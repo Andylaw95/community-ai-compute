@@ -1,0 +1,99 @@
+{
+  "url": "http://127.0.0.1:8767",
+  "browser": "installed Playwright Chromium",
+  "checks": [
+    {
+      "name": "page_identity_and_meaningful_content",
+      "status": "PASS",
+      "evidence": {
+        "title": "community AI Compute · 本機工作台",
+        "url": "http://127.0.0.1:8767/"
+      }
+    },
+    {
+      "name": "customer_submit_to_verified_output",
+      "status": "PASS",
+      "evidence": {
+        "job_id": "job_ae1ce9cbfc7e",
+        "images": 384
+      }
+    },
+    {
+      "name": "pause_during_active_job",
+      "status": "PASS",
+      "evidence": {
+        "credits_stable": 640,
+        "observed_seconds": 0.35
+      }
+    },
+    {
+      "name": "simulated_foreground_policy",
+      "status": "PASS",
+      "evidence": "idle: 0%; coexist: at most 15%; explicitly simulated"
+    },
+    {
+      "name": "stop_and_restart_real_process",
+      "status": "PASS",
+      "evidence": {
+        "old": "PID 57388",
+        "new": "PID 57459"
+      }
+    },
+    {
+      "name": "api_and_adoption_navigation",
+      "status": "PASS",
+      "evidence": "Both panels rendered with working navigation"
+    },
+    {
+      "name": "desktop_layout",
+      "status": "PASS",
+      "evidence": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "horizontal_overflow": false
+      }
+    },
+    {
+      "name": "concept_native_viewport",
+      "status": "PASS",
+      "evidence": {
+        "viewport": [
+          1505,
+          1045
+        ]
+      }
+    },
+    {
+      "name": "mobile_layout_and_control",
+      "status": "PASS",
+      "evidence": {
+        "viewport": [
+          390,
+          844
+        ],
+        "horizontal_overflow": false,
+        "pause_button": "responded"
+      }
+    },
+    {
+      "name": "console_and_network",
+      "status": "PASS",
+      "evidence": "No console errors, warnings, failed requests or framework overlay"
+    }
+  ],
+  "console_errors": [],
+  "console_warnings": [],
+  "network_failures": [],
+  "final_state": {
+    "accepted": 76,
+    "credits": 4480,
+    "compute_ms": 3688.793293433264,
+    "verify_ms": 3721.4518734253943,
+    "attempts": {
+      "accepted": 76,
+      "released": 2
+    }
+  }
+}

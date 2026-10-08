@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>community AI Compute · 本機工作台</title>
+  <link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主內容</a>
+<header class="topbar">
+  <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><rect x="11" y="11" width="19" height="19" rx="2"/></svg>community AI Compute</a>
+  <nav aria-label="主要導覽"><button data-tab="workspace" class="selected" aria-current="page">工作台</button><button data-tab="api">API</button><button data-tab="open">開源方向</button></nav>
+  <span class="environment">本機原型 · CPU</span>
+</header>
+<main id="main">
+  <section id="workspace" class="page">
+    <h1><span>讓閒置資源，</span><span>完成有用工作。</span></h1>
+    <p class="intro">三個本機 CPU 程序，實際分工處理合成影像的亮度統計。<br class="desktop-only">GPU 與前景遊戲情境為模擬；示範額度沒有現金、代幣或兌換價值。</p>
+    <div class="summary" aria-label="即時工作摘要">
+      <div><span class="metric-icon">✓</span><div><span class="caption">已驗證分片</span><strong id="metric-chunks">0</strong></div></div>
+      <div><span class="metric-icon">⌘</span><div><span class="caption">本機 CPU 程序</span><strong><span id="metric-nodes">0</span><small> / 3</small></strong></div></div>
+      <div><span class="metric-icon">≡</span><div><span class="caption">示範額度</span><strong id="metric-credits">0</strong></div></div>
+      <div><span class="metric-icon">◷</span><div><span class="caption">累計驗證時間</span><strong><span id="metric-verify">0.00</span><small> 秒</small></strong></div></div>
+    </div>
+    <div class="workspace-grid">
+      <section class="panel job-panel" aria-labelledby="jobs-heading">
+        <div class="section-title"><h2 id="jobs-heading">建立影像任務</h2><span class="subtle">128 × 128 灰階 · 固定運算</span></div>
+        <form id="job-form" class="job-form">
+          <label>影像數量<input id="count" type="number" min="1" max="4096" value="768" required></label>
+          <label>每個分片<select id="batch"><option value="16">16 張影像</option><option value="32" selected>32 張影像</option><option value="64">64 張影像</option><option value="128">128 張影像</option></select></label>
+          <button type="submit" id="submit" class="primary">提交批次</button>
+        </form>
+        <p class="hint">只產生非敏感測試影像；計算直方圖、總亮度與平方和，不執行 AI 推論。</p>
+        <div class="progress-section"><h3>最新工作進度</h3><div class="phase-track" id="phases"><div><span>1</span>等待分配<strong>0</strong></div><div><span>2</span>分配進行中<strong>0</strong></div><div><span>3</span>驗證並接受<strong>0</strong></div><div><span>4</span>交付成果<strong>—</strong></div></div></div>
+        <div class="section-title"><h3>任務列表</h3><span id="job-counter" class="subtle">0 份工作</span></div>
+        <div class="table-scroll"><table><thead><tr><th>任務</th><th>已驗證</th><th>狀態</th><th>結果</th></tr></thead><tbody id="jobs"><tr><td colspan="4" class="empty">提交第一個批次，觀察分片如何完成。</td></tr></tbody></table></div>
+      </section>
+      <aside class="panel provider-panel" aria-labelledby="provider-heading">
+        <h2 id="provider-heading">提供運算資源</h2>
+        <form id="policy-form">
+          <label class="check consent"><input id="consent" type="checkbox">同意在本機執行固定 CPU 工作</label>
+          <fieldset><legend>配置方式</legend><label class="radio"><input type="radio" name="mode" value="auto" checked>自動建議 <span class="subtle">依真實 OS 平均負載降低預算</span></label><label class="radio"><input type="radio" name="mode" value="manual">手動設定</label></fieldset>
+          <label class="range-label" for="budget">每程序工作時間預算上限 <output id="budget-output">30%</output></label>
+          <input id="budget" type="range" min="5" max="80" value="30" step="5">
+          <p class="hint">以工作段之間休息調節；不是整機 CPU 或 GPU 的硬體切片。</p>
+          <label>運行模式<select id="usage"><option value="idle">只在閒置時</option><option value="coexist">與前景共用（模擬）</option></select></label>
+          <label class="check"><input id="foreground" type="checkbox">模擬前景遊戲正在使用電腦</label>
+          <p class="hint">前景訊號是手動模擬；沒有偵測遊戲、GPU、溫度或功耗。</p>
+          <div class="actions"><button class="primary" type="submit">套用設定</button><button id="pause" type="button" class="secondary">暫停貢獻</button></div>
+        </form>
+        <div class="policy-status"><span id="policy-status">等待同意</span><strong id="effective">0%</strong></div>
+        <p id="hardware" class="hint">讀取本機資訊…</p>
+      </aside>
+    </div>
+    <div class="bottom-grid">
+      <section class="panel" aria-labelledby="nodes-heading"><div class="section-title"><h2 id="nodes-heading">本機 CPU 工作者</h2><span class="subtle">獨立 OS 程序，非三台電腦</span></div><div class="table-scroll"><table><thead><tr><th>節點 / PID</th><th>狀態</th><th>已驗證分片</th><th>操作</th></tr></thead><tbody id="nodes"></tbody></table></div><p class="hint">停止程序會讓租約逾期，其他程序接手；重啟須手動操作。</p></section>
+      <section class="panel" aria-labelledby="ledger-heading"><div class="section-title"><h2 id="ledger-heading">驗收後的額度記錄</h2><span class="subtle">每張合格影像 1 示範點</span></div><div class="table-scroll ledger-scroll"><table><thead><tr><th>記錄 / 分片</th><th>工作者</th><th>示範額度</th></tr></thead><tbody id="ledger"><tr><td colspan="3" class="empty">尚未有驗證完成的工作。</td></tr></tbody></table></div><p class="hint">每個分片只入帳一次；SQLite 留存可追溯記錄。</p></section>
+    </div>
+    <details class="diagnostics"><summary>故障試驗與事件記錄 <span>本機示範專用</span></summary><p>為指定程序的下一個租約注入一次事件，再提交工作觀察結果。</p><div class="fault-controls"><label>程序<select id="fault-node"><option>cpu-1</option><option>cpu-2</option><option>cpu-3</option></select></label><button data-fault="exit">領取後退出</button><button data-fault="invalid">提交錯誤結果</button><button data-fault="replay">重送同一結果</button></div><pre id="events"></pre></details>
+  </section>
+  <section id="api" class="page prose" hidden><h1>從一個批次 API 開始。</h1><p class="intro">客戶描述工作與驗收標準，平台負責分片、租約、重派與結果交付。</p><h2>此原型已實作</h2><p>POST /api/jobs、GET /api/jobs/{id}、GET /api/jobs/{id}/results。提交須使用 Idempotency-Key；同鍵同內容只建立一次，不同內容會拒絕。</p><pre id="api-example"></pre><h2>尚未實作</h2><p>對外身份驗證、組織配額、SDK、webhook、敏感資料處理、正式 SLA、現金與代幣。這個 HTTP 服務僅綁定 127.0.0.1；請勿對外轉發連接埠。</p><h2>固定工作合約</h2><p>synthetic-grayscale-statistics/v1；最多 4,096 張 128 × 128 合成影像，每分片 4–128 張；每個分片最多三次失敗嘗試。沒有任意命令、客戶容器或檔案上傳。</p></section>
+  <section id="open" class="page prose" hidden><h1>開放協議，從可信成果開始。</h1><p class="intro">讓人們能自行部署與檢查程式，是方向。AI 公司是否採用，仍取決於成本、品質、安全和模型授權。</p><ol class="roadmap"><li><strong>可自託管的 API 與工作合約</strong><p>先固定版本、輸入／模型摘要、結果格式、租約及冪等規則；讓客戶更容易接入及更換服務。</p></li><li><strong>找到第一位付費試點客戶</strong><p>先服務小型 AI 開發者的非敏感、可延遲批次工作；比較每份合格成果成本、品質、延遲及失敗率。尚無公司同意採用。</p></li><li><strong>模型與客戶授權</strong><p>只運行允許分發的模型及資料。開源協議不能讓閉源權重自動可用，也不能代替客戶對資料處理方式的批准。</p></li><li><strong>Apache-2.0 與公開協作</strong><p>原型程式及自撰文件採用 Apache-2.0，歡迎重現、研究及貢獻。請參閱儲存庫的 LICENSE、CONTRIBUTING 及 COMMUNITY；這不代表已部署公網算力服務，模型與資料仍需各自授權。</p></li></ol><p>目前是同一台電腦上的 CPU 原型。實體 GPU、公網、遊戲共用、機密運算及抗 Sybil 仍需獨立驗證。</p></section>
+  <footer>community AI Compute · 本機可行性原型 <span id="connection">正在連接協調器…</span></footer>
+</main>
+<div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+</body></html>

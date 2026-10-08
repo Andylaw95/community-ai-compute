@@ -1,0 +1,17 @@
+.runtime/
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+*.sqlite
+*.sqlite-*
+.env
+.env.*
+
+# Local notes, downloaded papers and previous preview output are not published.
+# Public material is selected in docs/ and evidence/.
+/Reading/
+/0[1-5]-*.md
+/TEST-REPORT.md
+/output/
+/evidence/local-verification.json

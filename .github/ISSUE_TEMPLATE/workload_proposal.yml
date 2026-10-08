@@ -1,0 +1,25 @@
+name: Useful workload proposal
+description: Propose a use case and how we can measure it.
+labels: [research, help wanted]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Who needs this and why?
+      description: User need and current alternative. No private identities or unconfirmed partnerships.
+    validations:
+      required: true
+  - type: textarea
+    id: permissions
+    attributes:
+      label: Workload and permissions
+      description: Public/non-sensitive inputs, model/data licenses, hardware, and independent batch boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: How would success be measured?
+      description: Quality, deadline, validation, baseline, transfer, retries, measured costs, uncertainties.
+    validations:
+      required: true

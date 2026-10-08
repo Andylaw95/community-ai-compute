@@ -1,0 +1,25 @@
+name: Reproduction or bug report
+description: Share a reproducible result from the local prototype.
+labels: [bug]
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, OS, architecture, Python version. No personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Command and steps
+      description: Use synthetic inputs and include the exact command.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed behavior
+      description: Include redacted output and whether workers stopped.
+    validations:
+      required: true

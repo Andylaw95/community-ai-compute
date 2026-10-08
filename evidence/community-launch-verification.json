@@ -1,0 +1,83 @@
+{
+  "utc": "2026-10-08T09:19:49.036409+00:00",
+  "python": "3.12.1 (v3.12.1:2305ca5144, Dec  7 2023, 17:23:38) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "system": "macOS-26.6.2-arm64-arm-64bit",
+  "logical_cpus": 18,
+  "load_1m": 6.73681640625,
+  "tests": {
+    "run": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 7.436424667015672
+  },
+  "integration_evidence": {
+    "dropout": {
+      "wall_seconds": 2.217960124835372,
+      "lease_seconds": 2,
+      "expired_attempts": 1,
+      "credits": 64,
+      "exit_code": 17
+    },
+    "invalid_and_replay": {
+      "accepted": 4,
+      "credits": 64,
+      "compute_ms": 62.30350071564317,
+      "verify_ms": 65.27245906181633,
+      "attempts": {
+        "accepted": 4,
+        "invalid": 1
+      }
+    },
+    "real_workers": {
+      "pids": [
+        55584,
+        55585,
+        55586
+      ],
+      "accepted_images": 384,
+      "nodes_used": 3
+    }
+  },
+  "timing_trials": [
+    {
+      "job_id": "job_7c46ff459437",
+      "images": 768,
+      "image_side": 128,
+      "chunks": 24,
+      "workers": 3,
+      "manual_budget_percent": 60,
+      "wall_seconds": 1.153739833040163,
+      "accepted_images_per_second": 665.6613371632329,
+      "worker_compute_seconds": 0.6271698719356209,
+      "verifier_compute_seconds": 0.651528247166425,
+      "credits": 768
+    },
+    {
+      "job_id": "job_c7dc200181b2",
+      "images": 768,
+      "image_side": 128,
+      "chunks": 24,
+      "workers": 3,
+      "manual_budget_percent": 60,
+      "wall_seconds": 1.0687762079760432,
+      "accepted_images_per_second": 718.5788701774833,
+      "worker_compute_seconds": 0.5976858912035823,
+      "verifier_compute_seconds": 0.6567214990500361,
+      "credits": 768
+    },
+    {
+      "job_id": "job_54aafd70dc08",
+      "images": 768,
+      "image_side": 128,
+      "chunks": 24,
+      "workers": 3,
+      "manual_budget_percent": 60,
+      "wall_seconds": 1.0897747909184545,
+      "accepted_images_per_second": 704.7327635031226,
+      "worker_compute_seconds": 0.6308536287397146,
+      "verifier_compute_seconds": 0.6620373365003616,
+      "credits": 768
+    }
+  ]
+}

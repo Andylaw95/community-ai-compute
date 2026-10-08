@@ -1,0 +1,38 @@
+{
+  "status": "completed",
+  "scope": "synthetic CPU statistics; one computer; no AI model",
+  "worker_processes": 3,
+  "workers_with_accepted_chunks": 3,
+  "accepted_images": 96,
+  "accepted_chunks": 6,
+  "demo_credits_without_monetary_value": 96,
+  "duplicate_submission_reused_job": true,
+  "conflicting_submission_http_status": 409,
+  "first_result": {
+    "histogram": [
+      1025,
+      1038,
+      1025,
+      1022,
+      1024,
+      988,
+      1030,
+      1020,
+      1066,
+      1059,
+      1032,
+      1022,
+      1024,
+      982,
+      1026,
+      1001
+    ],
+    "image_id": 0,
+    "pixels": 16384,
+    "sha256": "bbae36093bedff026b939338f54886bd8e05bdeb54ebd467a7e219060c4d7f1b",
+    "sum": 2084285,
+    "sum_squares": 354046371
+  },
+  "all_worker_processes_stopped": true,
+  "temporary_database_removed": true
+}
