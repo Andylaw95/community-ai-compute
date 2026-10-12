@@ -20,7 +20,7 @@ The coordinator trusts its local environment. Workers receive an ephemeral inter
 
 ## Limits that matter next
 
-- Worker and verifier use the same function. A shared bug can pass both; independent fixtures are needed.
+- Worker and verifier share `image_stats`. [Independent golden fixtures](COMPUTE-GOLDEN.md) pin selected outputs and integer field types; they do not prove correctness for every input or independently validate the cryptographic implementation.
 - Verification holds the coordinator lock and database transaction. Larger work could block heartbeats. Moving it outside the lock requires an atomic final recheck of attempt ownership, lease validity, and previous acceptance.
 - CPU rest periods are cooperative. They do not isolate GPU capacity or limit verifier CPU usage.
 - Three processes on one device do not test WAN scheduling, NAT, heterogeneous GPUs, or untrusted hosts.
